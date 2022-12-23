@@ -4,7 +4,7 @@ import cogoToast from "cogo-toast";
 export const startRegisterUser = (formData, reDirectSuccess, reDirectError) => {
   return () => {
     axios
-      .post("http://localhost:4030/api/user/register", formData)
+      .post("/api/user/register", formData)
       .then((response) => {
         if (response.data.emailError) {
           reDirectError(response.data.emailError); // email already exists
