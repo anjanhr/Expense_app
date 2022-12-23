@@ -4,7 +4,7 @@ import cogoToast from "cogo-toast";
 export const startGetExpense = () => {
   return (dispatch) => {
     axios
-      .get("http://localhost:4030/api/user/expenses", {
+      .get("/api/user/expenses", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },
@@ -36,7 +36,7 @@ const getExpense = (expenseData) => {
 export const startGetBudgetOverView = (reDirectTotal) => {
   return (dispatch) => {
     axios
-      .get("http://localhost:4030/api/user/expenses/total", {
+      .get("/api/user/expenses/total", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },
@@ -61,7 +61,7 @@ export const startGetBudgetOverView = (reDirectTotal) => {
 export const startPostExpense = (formData, reDirect) => {
   return (dispatch) => {
     axios
-      .post("http://localhost:4030/api/user/expenses", formData, {
+      .post("/api/user/expenses", formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },
@@ -89,7 +89,7 @@ export const startPostExpense = (formData, reDirect) => {
 export const startPutExpense = (id, formData, reDirect) => {
   return () => {
     axios
-      .put(`http://localhost:4030/api/user/expenses/${id}`, formData, {
+      .put(`/api/user/expenses/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },
@@ -122,7 +122,7 @@ export const startDeleteHard = (
 ) => {
   return () => {
     axios
-      .delete(`http://localhost:4030/api/user/expenses/${id}/harddelete`, {
+      .delete(`/api/user/expenses/${id}/harddelete`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },

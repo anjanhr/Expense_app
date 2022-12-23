@@ -1,5 +1,6 @@
 import axios from "axios";
 import cogoToast from "cogo-toast";
+//http://localhost:4030/
 
 export const startRegisterUser = (formData, reDirectSuccess, reDirectError) => {
   return () => {
@@ -23,7 +24,7 @@ export const startRegisterUser = (formData, reDirectSuccess, reDirectError) => {
 export const startLoginUser = (formData, reDirectSuccess, reDirectError) => {
   return (dispatch) => {
     axios
-      .post("http://localhost:4030/api/user/login", formData)
+      .post("/api/user/login", formData)
       .then((response) => {
         if (response.data.mainError) {
           reDirectError(response.data.mainError); // invalid email or password
@@ -32,7 +33,7 @@ export const startLoginUser = (formData, reDirectSuccess, reDirectError) => {
           const token = response.data.token.split(" ")[1];
           localStorage.setItem("myToken", token);
           axios
-            .get(`http://localhost:4030/api/user/account`, {
+            .get(`/api/user/account`, {
               headers: {
                 Authorization: response.data.token,
               },
@@ -68,7 +69,7 @@ const getUser = (userData) => {
 export const startShowUser = () => {
   return (dispatch) => {
     axios
-      .get(`http://localhost:4030/api/user/account`, {
+      .get(`/api/user/account`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },
@@ -98,7 +99,7 @@ const showUser = (userData) => {
 export const startPostProfile = (formData, reDirect) => {
   return () => {
     axios
-      .post(`http://localhost:4030/api/user/account`, formData, {
+      .post(`/api/user/account`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },
@@ -128,7 +129,7 @@ export const startPostProfile = (formData, reDirect) => {
 export const startDeleteProfile = (reDirect) => {
   return () => {
     axios
-      .delete(`http://localhost:4030/api/user/account/`, {
+      .delete(`/api/user/account/`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },
