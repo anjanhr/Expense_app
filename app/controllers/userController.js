@@ -67,43 +67,45 @@ userController.account = (request, response) => {
 };
 
 userController.create = (request, response) => {
-  const name = request.body.name;
-  const occupation = request.body.occupation;
-  const image = request.file ? request.file.path : "";
+  response.json({
+    name: request.body.name,
+    occupation: request.body.occupation,
+    image: request.files,
+  });
 
-  User.findOneAndUpdate(
-    { _id: request.tokenData._id },
-    {
-      $set: {
-        "profile.name": name,
-        "profile.occupation": occupation,
-        "profile.image": image,
-      },
-    },
-    { new: true, runValidators: true }
-  )
-    .then((users) => {
-      response.json(users);
-    })
-    .catch((error) => {
-      if (error.message.includes("shorter")) {
-        response.json({
-          lengthError: "Check the min length (name & occupation [min:5])",
-        });
-      } else if (error.message.includes("longer")) {
-        response.json({
-          lengthError: "Check the max length (name & occupation [max:20])",
-        });
-      } else if (error.message.includes("required")) {
-        response.json({
-          feildsError: "All feilds are required!",
-        });
-      } else {
-        response.json({
-          mainError: error.message,
-        });
-      }
-    });
+  // User.findOneAndUpdate(
+  //   { _id: request.tokenData._id },
+  //   {
+  //     $set: {
+  //       "profile.name": name,
+  //       "profile.occupation": occupation,
+  //       "profile.image": image,
+  //     },
+  //   },
+  //   { new: true, runValidators: true }
+  // )
+  //   .then((users) => {
+  //     response.json(users);
+  //   })
+  //   .catch((error) => {
+  //     if (error.message.includes("shorter")) {
+  //       response.json({
+  //         lengthError: "Check the min length (name & occupation [min:5])",
+  //       });
+  //     } else if (error.message.includes("longer")) {
+  //       response.json({
+  //         lengthError: "Check the max length (name & occupation [max:20])",
+  //       });
+  //     } else if (error.message.includes("required")) {
+  //       response.json({
+  //         feildsError: "All feilds are required!",
+  //       });
+  //     } else {
+  //       response.json({
+  //         mainError: error.message,
+  //       });
+  //     }
+  //   });
 };
 
 userController.destroy = (request, response) => {

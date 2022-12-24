@@ -4,7 +4,7 @@ import cogoToast from "cogo-toast";
 export const startGetBudget = () => {
   return (dispatch) => {
     axios
-      .get("/api/user/budgets", {
+      .get("http://localhost:4030/api/user/budgets", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },
@@ -36,7 +36,7 @@ const getBudget = (budgetData) => {
 export const startPutBudget = (id, formData) => {
   return (dispatch, getState) => {
     axios
-      .put(`/api/user/budgets/${id}`, formData, {
+      .put(`http://localhost:4030/api/user/budgets/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },

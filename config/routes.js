@@ -15,7 +15,7 @@ router.post("/api/user/login", userController.login);
 router.get("/api/user/account", authenticateUser, userController.account);
 router.post(
   "/api/user/account",
-  upload.single("image"),
+  // upload.single("image"),
   authenticateUser,
   userController.create
 );

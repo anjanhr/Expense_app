@@ -12,14 +12,14 @@ import NavBar from "./NavBar";
 import ParticlesBg from "particles-bg";
 
 const UserProfile = (props) => {
-  const triggerFileSelectPopup = () => inputRef.current.click();
+  // const triggerFileSelectPopup = () => inputRef.current.click();
 
   const userId = props.match.params.id;
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [occupation, setOccupation] = useState("");
   // const [image, setImage] = useState("");
-  const [image, setImage] = React.useState(null);
+  const [image, setImage] = useState(null);
   const [edit, setEdit] = useState(false);
 
   useEffect(() => {
@@ -37,11 +37,20 @@ const UserProfile = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
+    // const formData = new FormData();
 
+    // formData.append("name", name);
+    // formData.append("occupation", occupation);
+    // formData.append("image", image);
+
+    const formData = new FormData();
     formData.append("name", name);
     formData.append("occupation", occupation);
     formData.append("image", image);
+
+    for (var key of formData.entries()) {
+      console.log(key[0] + ", " + key[1]);
+    }
 
     dispatch(startPostProfile(formData, reDirect));
     function reDirect() {
@@ -70,11 +79,35 @@ const UserProfile = (props) => {
     }
   };
 
+  const dataURLtoFile = (dataurl, filename) => {
+    const arr = dataurl.split(",");
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+
+    while (n--) u8arr[n] = bstr.charCodeAt(n);
+
+    return new File([u8arr], filename, { type: mime });
+  };
+
+  const onSelectFile = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.addEventListener("load", () => {
+        const convertedUrlToFile = dataURLtoFile(reader.result, "image.jpeg");
+        setImage(convertedUrlToFile);
+      });
+    }
+  };
+
   return (
     <div>
       <ParticlesBg type="square" bg={true} />
       {/* ball, circle, cobweb, square, fountain, random */}
       <NavBar />
+
       <div className="flex-container2" style={{ marginTop: "2rem" }}>
         <div className="flex-child2 green">
           <span>
@@ -213,18 +246,17 @@ const UserProfile = (props) => {
                 <input
                   type="file"
                   accept="image/*"
-                  ref={inputRef}
+                  // ref={inputRef}
                   onChange={onSelectFile}
-                  style={{ display: "none" }}
                 />
-                <Button
+                {/* <Button
                   variant="contained"
                   color="primary"
                   onClick={triggerFileSelectPopup}
                   style={{ marginRight: "10px" }}
                 >
                   Choose
-                </Button>
+                </Button> */}
 
                 <br />
                 <br />

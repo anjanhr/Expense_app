@@ -1,11 +1,11 @@
 import axios from "axios";
 import cogoToast from "cogo-toast";
-//http://localhost:4030/
+// http://localhost:4030/
 
 export const startRegisterUser = (formData, reDirectSuccess, reDirectError) => {
   return () => {
     axios
-      .post("/api/user/register", formData)
+      .post("http://localhost:4030/api/user/register", formData)
       .then((response) => {
         if (response.data.emailError) {
           reDirectError(response.data.emailError); // email already exists
@@ -24,7 +24,7 @@ export const startRegisterUser = (formData, reDirectSuccess, reDirectError) => {
 export const startLoginUser = (formData, reDirectSuccess, reDirectError) => {
   return (dispatch) => {
     axios
-      .post("/api/user/login", formData)
+      .post("http://localhost:4030/api/user/login", formData)
       .then((response) => {
         if (response.data.mainError) {
           reDirectError(response.data.mainError); // invalid email or password
@@ -33,7 +33,7 @@ export const startLoginUser = (formData, reDirectSuccess, reDirectError) => {
           const token = response.data.token.split(" ")[1];
           localStorage.setItem("myToken", token);
           axios
-            .get(`/api/user/account`, {
+            .get(`http://localhost:4030/api/user/account`, {
               headers: {
                 Authorization: response.data.token,
               },
@@ -69,7 +69,7 @@ const getUser = (userData) => {
 export const startShowUser = () => {
   return (dispatch) => {
     axios
-      .get(`/api/user/account`, {
+      .get(`http://localhost:4030/api/user/account`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },
@@ -97,28 +97,30 @@ const showUser = (userData) => {
 };
 
 export const startPostProfile = (formData, reDirect) => {
+  console.log(formData);
   return () => {
     axios
-      .post(`/api/user/account`, formData, {
+      .post(`http://localhost:4030/api/user/account`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },
       })
       .then((response) => {
-        if (response.data.error) {
-          cogoToast.error(response.data.error); // token altered
-        } else if (response.data.notice) {
-          cogoToast.error(response.data.notice); // token not given
-        } else if (response.data.lengthError) {
-          cogoToast.error(response.data.lengthError); // length error
-        } else if (response.data.feildsError) {
-          cogoToast.error(response.data.feildsError); // feilds error
-        } else if (response.data.mainError) {
-          cogoToast.error(response.data.mainError); // any error
-        } else {
-          cogoToast.success("Profile Updated");
-          reDirect();
-        }
+        console.log("response", response);
+        // if (response.data.error) {
+        //   cogoToast.error(response.data.error); // token altered
+        // } else if (response.data.notice) {
+        //   cogoToast.error(response.data.notice); // token not given
+        // } else if (response.data.lengthError) {
+        //   cogoToast.error(response.data.lengthError); // length error
+        // } else if (response.data.feildsError) {
+        //   cogoToast.error(response.data.feildsError); // feilds error
+        // } else if (response.data.mainError) {
+        //   cogoToast.error(response.data.mainError); // any error
+        // } else {
+        //   cogoToast.success("Profile Updated");
+        //   reDirect();
+        // }
       })
       .catch((error) => {
         cogoToast.error(error.message);
@@ -129,7 +131,7 @@ export const startPostProfile = (formData, reDirect) => {
 export const startDeleteProfile = (reDirect) => {
   return () => {
     axios
-      .delete(`/api/user/account/`, {
+      .delete(`http://localhost:4030/api/user/account/`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },

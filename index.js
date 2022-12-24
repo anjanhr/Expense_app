@@ -1,16 +1,21 @@
 const express = require("express");
 const app = express();
+const expressfileupload = require("express-fileupload");
 const bodyParser = require("body-parser");
 const router = require("./config/routes");
+
 require("dotenv").config();
 const port = process.env.PORT || 4000;
 const cors = require("cors");
 const configureDb = require("./config/database");
 const path = require("path");
+
 configureDb();
 
 app.use(cors());
+app.use(expressfileupload());
 app.use(express.json());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(router);

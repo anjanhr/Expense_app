@@ -4,7 +4,7 @@ import cogoToast from "cogo-toast";
 export const startGetCategory = () => {
   return (dispatch) => {
     axios
-      .get("/api/user/categories", {
+      .get("http://localhost:4030/api/user/categories", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },
@@ -36,7 +36,7 @@ const getCategory = (categoryData) => {
 export const startPostCategory = (formData, reDirect) => {
   return (dispatch) => {
     axios
-      .post("/api/user/categories", formData, {
+      .post("http://localhost:4030/api/user/categories", formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },
@@ -64,7 +64,7 @@ export const startPostCategory = (formData, reDirect) => {
 export const startDeleteCategory = (id, reDirect) => {
   return (dispatch) => {
     axios
-      .delete(`/api/user/categories/${id}`, {
+      .delete(`http://localhost:4030/api/user/categories/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },
@@ -97,7 +97,7 @@ const getNewSetCategory = (newSetCategoryData) => {
 export const startUndoCategoryDelete = (data, reDirect) => {
   return (dispatch) => {
     axios
-      .put(`/api/user/categories/undodeleted`, data, {
+      .put(`http://localhost:4030/api/user/categories/undodeleted`, data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },
@@ -123,7 +123,7 @@ export const startUndoCategoryDelete = (data, reDirect) => {
 export const startcategoryWiseSplit = (reDirect) => {
   return (dispatch) => {
     axios
-      .get("/api/user/categories/splitData", {
+      .get("http://localhost:4030/api/user/categories/splitData", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
         },
