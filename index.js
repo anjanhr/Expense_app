@@ -10,6 +10,7 @@ const configureDb = require("./config/database");
 
 configureDb();
 
+app.use(express.static("./public"));
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
