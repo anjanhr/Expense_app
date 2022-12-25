@@ -97,30 +97,29 @@ const showUser = (userData) => {
 };
 
 export const startPostProfile = (formData, reDirect) => {
-  console.log(formData);
   return () => {
     axios
       .post(`http://localhost:4030/api/user/account`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("myToken")}`,
+          "Content-Type": "multipart/form-data", // for other data along with image use multipart
         },
       })
       .then((response) => {
-        console.log("response", response);
-        // if (response.data.error) {
-        //   cogoToast.error(response.data.error); // token altered
-        // } else if (response.data.notice) {
-        //   cogoToast.error(response.data.notice); // token not given
-        // } else if (response.data.lengthError) {
-        //   cogoToast.error(response.data.lengthError); // length error
-        // } else if (response.data.feildsError) {
-        //   cogoToast.error(response.data.feildsError); // feilds error
-        // } else if (response.data.mainError) {
-        //   cogoToast.error(response.data.mainError); // any error
-        // } else {
-        //   cogoToast.success("Profile Updated");
-        //   reDirect();
-        // }
+        if (response.data.error) {
+          cogoToast.error(response.data.error); // token altered
+        } else if (response.data.notice) {
+          cogoToast.error(response.data.notice); // token not given
+        } else if (response.data.lengthError) {
+          cogoToast.error(response.data.lengthError); // length error
+        } else if (response.data.amazonS3Error) {
+          cogoToast.error(response.data.amazonS3Error); // amazon S3 error
+        } else if (response.data.mainError) {
+          cogoToast.error(response.data.mainError); // any error
+        } else {
+          cogoToast.success("Profile Updated");
+          reDirect();
+        }
       })
       .catch((error) => {
         cogoToast.error(error.message);
