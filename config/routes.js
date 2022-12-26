@@ -12,7 +12,7 @@ const budgetController = require("../app/controllers/budgetController");
 router.post("/api/user/register", userController.register);
 router.post("/api/user/login", userController.login);
 router.get("/api/user/account", authenticateUser, userController.account);
-router.post("/api/user/account", authenticateUser, userController.create);
+// router.post("/api/user/account", authenticateUser, userController.create);
 router.delete("/api/user/account", authenticateUser, userController.destroy);
 
 // budget
