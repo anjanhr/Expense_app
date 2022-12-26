@@ -32,4 +32,4 @@ app.listen(port, () => {
   console.log("database is listening on the port", port);
 });
 
-module.exports = router;
+module.exports = app;
