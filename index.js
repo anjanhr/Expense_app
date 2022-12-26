@@ -6,6 +6,7 @@ const router = require("./config/routes");
 const configureDb = require("./config/database");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const path = require("path");
 
 configureDb();
 
