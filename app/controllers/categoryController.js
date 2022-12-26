@@ -74,7 +74,11 @@ categoryController.create = (request, response) => {
         response.json(categories);
       })
       .catch((error) => {
-        response.json({ MainError: error.message });
+        if (error.message.includes("E11000")) {
+          response.json({ duplicateError: "Category already Exists!" });
+        } else {
+          response.json({ MainError: error.message });
+        }
       });
   } else {
     response.json({ stringError: "Please enter only string" });

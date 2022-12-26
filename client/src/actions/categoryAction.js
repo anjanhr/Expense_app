@@ -44,12 +44,14 @@ export const startPostCategory = (formData, reDirect) => {
       .then((response) => {
         if (response.data.error) {
           cogoToast.error(response.data.error); // token altered
-        } else if (response.data.mainError) {
-          cogoToast.error(response.data.mainError); // any error
-        } else if (response.data.stringError) {
-          cogoToast.error(response.data.stringError); // only string error
         } else if (response.data.notice) {
           cogoToast.error(response.data.notice); // token not given
+        } else if (response.data.stringError) {
+          cogoToast.error(response.data.stringError); // only string error
+        } else if (response.data.duplicateError) {
+          cogoToast.error(response.data.duplicateError); // categoey already exist
+        } else if (response.data.mainError) {
+          cogoToast.error(response.data.mainError); // any error
         } else {
           cogoToast.success("Added Category Successful");
           reDirect();
