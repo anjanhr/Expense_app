@@ -227,6 +227,9 @@ const UserProfile = (props) => {
                   onChange={onSelectFile}
                 />
                 <br />
+                <h4 style={{ color: "red", fontFamily: "Calisto MT" }}>
+                  image size limit: 1 Mb
+                </h4>
                 <br />
                 <input className="regcolor1" type="submit" value="Update" />
                 <input
