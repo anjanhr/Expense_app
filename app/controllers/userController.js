@@ -40,6 +40,7 @@ const upload = (bucketName) =>
         cb(null, `image-${Date.now()}.jpeg`);
       },
     }),
+    limits: { fileSize: 1 * 1024 * 1024 },
   });
 
 userController.register = (request, response) => {
@@ -60,9 +61,9 @@ userController.register = (request, response) => {
         })
         .catch((error) => {
           if (error.message.includes("E11000")) {
-            response.json({ emailError: "Email already Exists!" });
+            return response.json({ emailError: "Email already Exists!" });
           } else {
-            response.json({ mainError: error.message });
+            return response.json({ mainError: error.message });
           }
         });
     });
@@ -85,15 +86,15 @@ userController.login = (request, response) => {
           const token = jwt.sign(tokenData, tokenKey, {
             expiresIn: "2d",
           });
-          response.json({
+          return response.json({
             token: `Bearer ${token}`,
           });
         } else {
-          response.json({ mainError: "Invalid Email or Password" });
+          return response.json({ mainError: "Invalid Email or Password" });
         }
       });
     } else {
-      response.json({ mainError: "Invalid Email or Password" });
+      return response.json({ mainError: "Invalid Email or Password" });
     }
   });
 };
@@ -109,7 +110,7 @@ userController.create = (request, response) => {
   uploadSingle(request, response, (error) => {
     // this req, res are refering the same of above req, res
     if (error) {
-      response.json({ amazonS3Error: error.message });
+      return response.json({ amazonS3Error: error.message });
     } else {
       const name = request.body.name;
       const occupation = request.body.occupation;
@@ -131,15 +132,15 @@ userController.create = (request, response) => {
         })
         .catch((error) => {
           if (error.message.includes("shorter")) {
-            response.json({
+            return response.json({
               lengthError: "Check the min length (name & occupation [min:5])",
             });
           } else if (error.message.includes("longer")) {
-            response.json({
+            return response.json({
               lengthError: "Check the max length (name & occupation [max:20])",
             });
           } else {
-            response.json({
+            return response.json({
               mainError: error.message,
             });
           }

@@ -24,9 +24,9 @@ budgetController.update = (request, response) => {
     })
     .catch((error) => {
       if (error.message.includes("Number failed")) {
-        response.json({ numberError: "Please enter only number" });
+        return response.json({ numberError: "Please enter only number" });
       } else {
-        response.json({ mainError: error.message });
+        return response.json({ mainError: error.message });
       }
     });
 };

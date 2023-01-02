@@ -50,9 +50,9 @@ expenseController.create = (request, response) => {
         })
         .catch((error) => {
           if (error.message.includes("E11000")) {
-            response.json({ expenseError: "Expense already Exists!" });
+            return response.json({ expenseError: "Expense already Exists!" });
           } else {
-            response.json({ mainError: error.message });
+            return response.json({ mainError: error.message });
           }
         });
     } else {
@@ -65,9 +65,9 @@ expenseController.create = (request, response) => {
         })
         .catch((error) => {
           if (error.message.includes("E11000")) {
-            response.json({ expenseError: "Expense already Exists!" });
+            return response.json({ expenseError: "Expense already Exists!" });
           } else {
-            response.json({ mainError: error.message });
+            return response.json({ mainError: error.message });
           }
         });
     }
@@ -107,9 +107,9 @@ expenseController.update = (request, response) => {
     })
     .catch((error) => {
       if (error.message.includes("E11000")) {
-        response.json({ expenseError: "Expense already Exists!" });
+        return response.json({ expenseError: "Expense already Exists!" });
       } else {
-        response.json({ mainError: error.message });
+        return response.json({ mainError: error.message });
       }
     });
 };
@@ -129,7 +129,7 @@ expenseController.hardDeleted = (request, response) => {
           response.json({ mainError: error.message });
         });
     } else {
-      response.json({ passwordError: " Incorrect Password" });
+      return response.json({ passwordError: " Incorrect Password" });
     }
   });
 };
