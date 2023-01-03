@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { startHomeAction } from "../actions/homeAction";
 import { startLoginUser } from "../actions/userAction";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
@@ -16,10 +15,6 @@ const UserLogin = (props) => {
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [isErrorOpen, setIsErrorOpen] = useState(false);
   const [error, setError] = useState("");
-
-  useEffect(() => {
-    dispatch(startHomeAction(false));
-  }, [dispatch]);
 
   useEffect(() => {
     if (status === "new") {
@@ -50,6 +45,7 @@ const UserLogin = (props) => {
 
     dispatch(startLoginUser(data, reDirectSuccess, reDirectError));
     function reDirectSuccess(user) {
+      localStorage.setItem("User_in", "user is logged in");
       props.history.push(`/user/${user._id}/dashboard/home`);
       formik.resetForm();
     }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { startHomeAction } from "../actions/homeAction";
 import { startGetBudget, startPutBudget } from "../actions/budgetAction";
 import { startPostCategory } from "../actions/categoryAction";
 import { startGetCategory } from "../actions/categoryAction";
@@ -19,10 +18,6 @@ const Settings = (props) => {
   const [currentCategoryData, setCurrentCategoryData] = useState([]);
   const [softDeletedData, setSoftDeletedData] = useState([]);
   const [isOpen, setIsopen] = useState(false);
-
-  useEffect(() => {
-    dispatch(startHomeAction(false));
-  }, [dispatch]);
 
   useEffect(() => {
     dispatch(startGetBudget());

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { startHomeAction } from "../actions/homeAction";
 import { startRegisterUser } from "../actions/userAction";
 import "../style.css";
 import ParticlesBg from "particles-bg";
@@ -16,10 +15,6 @@ const UserRegistration = (props) => {
   // const [success, setSuccess] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
-
-  useEffect(() => {
-    dispatch(startHomeAction(false));
-  }, [dispatch]);
 
   const validationSchema = yup.object({
     email: yup

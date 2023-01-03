@@ -19,7 +19,7 @@ const authenticateUser = (request, response, next) => {
       response.json({ error: e.message });
     }
   } else {
-    response.json({ notice: "you need token to access this route" });
+    return response.json({ notice: "you need token to access this route" });
   }
 };
 

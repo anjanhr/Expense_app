@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { startHomeAction } from "../actions/homeAction";
 import { useSelector, useDispatch } from "react-redux";
 import {
   startDeleteProfile,
@@ -18,10 +17,6 @@ const UserProfile = (props) => {
   const [occupation, setOccupation] = useState("");
   const [image, setImage] = useState(null);
   const [edit, setEdit] = useState(false);
-
-  useEffect(() => {
-    dispatch(startHomeAction(false));
-  }, [dispatch]);
 
   useEffect(() => {
     dispatch(startShowUser());

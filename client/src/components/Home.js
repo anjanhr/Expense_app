@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { startHomeAction } from "../actions/homeAction";
 import {
   startGetCategory,
   startcategoryWiseSplit,
@@ -40,10 +39,6 @@ const Home = (props) => {
   const [hoverData, setHoverData] = useState([]);
   const [deleteModOpen, setDeleteModOpen] = useState(false);
   const [deleteModData, setDeleteModData] = useState({});
-
-  useEffect(() => {
-    dispatch(startHomeAction(false));
-  }, [dispatch]);
 
   useEffect(() => {
     dispatch(startGetCategory());
@@ -444,7 +439,7 @@ const Home = (props) => {
         >
           <>
             <h2> Category Splitwise Overview</h2>
-            {categoryWiseSplit.length < 6 ? (
+            {categoryWiseSplit.length < 4 ? (
               <>
                 {categoryWiseSplit.length === 0 ? (
                   <img
