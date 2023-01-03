@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 4010;
 const router = require("./config/routes");
 const connectDB = require("./config/database");
 const cors = require("cors");
-// const expressfileupload = require("express-fileupload"); // used before aws s3 request only
+// const expressfileupload = require("express-fileupload"); // used before aws s3
 const bodyParser = require("body-parser");
 // const path = require("path");
 
@@ -24,13 +24,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // cyclic connection
-// app.use(express.static(path.join(__dirname, "./client/build")));
 
-// app.get("*", function (_, res) {
-//   res.sendFile(
-//     path.join(__dirname, "./client/build/index.html"),
-//     function (err) {
-//       res.send(err);
-//     }
-//   );
-// });
+app.use(express.static(path.join(__dirname, "./client/build")));
+
+app.get("*", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "./client/build/index.html"),
+    function (err) {
+      res.send(err);
+    }
+  );
+});
