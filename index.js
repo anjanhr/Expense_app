@@ -7,7 +7,7 @@ const connectDB = require("./config/database");
 const cors = require("cors");
 // const expressfileupload = require("express-fileupload"); // used before aws s3
 const bodyParser = require("body-parser");
-// const path = require("path");
+const path = require("path");
 
 // myDB connection
 connectDB().then(() => {
@@ -24,7 +24,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // cyclic connection
-
 app.use(express.static(path.join(__dirname, "./client/build")));
 
 app.get("*", function (_, res) {
