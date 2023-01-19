@@ -29,7 +29,7 @@ App Features :
 12.	The pie chart will only show up to three categories.
 13.	The pie chart will get replaced by a mini table after the three categories have been used by the expense items. (The number of expense items in each category           doesn’t matter in this case.)
 14.	On the mini-table, one can see his expense items by hovering over the price list.
-15.	In the main and mini tables, the deleted category is automatically struck out.
+15.	In the main and mini tables, the deleted categories are automatically scratched out.
 16.	One can add his personal details along with his avatar.
 17.	One can add, update, and delete his profile.
 
