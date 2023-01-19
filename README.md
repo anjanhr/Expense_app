@@ -8,7 +8,9 @@ _________________________
 Live Link: https://victorious-overcoat-goat.cyclic.app/
 _________________________
 
-Packages : react, react-dom, react-router-dom, react-redux, redux, redux-thunk, axios, antd, formik, yup, cogo-toast, particles-bg, react-google-charts, sweetalert2, express, mongoose, mongoose-delete, nodemon, bcryptjs, jsonwebtoken, cors, dotenv, lodash, multer, multer-s3, aws-sdk.
+Packages : 
+
+react, react-dom, react-router-dom, react-redux, redux, redux-thunk, axios, antd, formik, yup, cogo-toast, particles-bg, react-google-charts, sweetalert2, express, mongoose, mongoose-delete, nodemon, bcryptjs, jsonwebtoken, cors, dotenv, lodash, multer, multer-s3, aws-sdk.
 _________________________
 
 App Features : 
