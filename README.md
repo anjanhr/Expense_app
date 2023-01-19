@@ -1,4 +1,12 @@
-# Expense_app
+# EXPENSE MANAGER WEB APP
+
+About the App : 
+
+Expense Manager is an intuitive, reliable, and feature-rich application designed for people who want to effectively manage their income and budget their expenses and savings. It aids in keeping tabs on all transactions, including restrictions, budget, and expenses.
+
+_________________________
+
+App Features : 
 
 1.	One can add to and edit the budget.
 2.	One can add a category.
